@@ -79,26 +79,27 @@ public class Restaurante {
 
         while (izquierda.size() > 0 && derecha.size() > 0) {
             if (izquierda.get(0).calcularTotal() < derecha.get(0).calcularTotal()) {
-                resultado.add(izquierda.get(0));
-                izquierda.remove(0);
+                popAndAppendTo(izquierda, resultado);
             } else {
-                resultado.add(derecha.get(0));
-                derecha.remove(0);
+                popAndAppendTo(derecha, resultado);
             }
         }
 
         while (izquierda.size() > 0) {
-            resultado.add(izquierda.get(0));
-            izquierda.remove(0);
+            popAndAppendTo(izquierda, resultado);
         }
 
         while (derecha.size() > 0) {
-            resultado.add(derecha.get(0));
-            derecha.remove(0);
+            popAndAppendTo(derecha, resultado);
         }
 
         return resultado;
     }
+
+	private void popAndAppendTo(ArrayList<Pedido> izquierda, ArrayList<Pedido> resultado) {
+		resultado.add(izquierda.get(0));
+		izquierda.remove(0);
+	}
 
     public static void main(String[] args) {
         ArrayList<Producto> productos = new ArrayList<>();
