@@ -81,11 +81,12 @@ public class Parser {
 		return res;
 	}
 	public float subtract(float[] args) {
-		float[] tail = Arrays.copyOfRange(args, 1, args.length);
+		float[] tail = extractTail(args);
 		return args[0] - add(tail);
 	}
+	
 	public float divide(float[] args) {
-		float[] tail = Arrays.copyOfRange(args, 1, args.length);
+		float[] tail = extractTail(args);
 		return args[0]/multiply(tail);
 	}
 	
@@ -121,6 +122,10 @@ public class Parser {
 	
 	public float evaluate(String expression) {
 		return Integer.parseInt(expression);
+	}
+
+	private float[] extractTail(float[] args) {
+		return Arrays.copyOfRange(args, 1, args.length);
 	}
 	
 	public static void main(String[] args) throws IOException {
